@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { MdDeleteOutline } from "react-icons/md";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
+import { handleAppStore } from '../../Store/AppStore';
 
-const Item = ({item,HandleDeleteOption,MarkAsComplete}) => {
-
+const Item = ({item}) => {
 
   const [tickMark,setTickMark] = useState(false);
+  const {markAsComplete,deleteTask} = useContext(handleAppStore)
 
-  // handle delete btn
+  // handel delete btn
   const handleDeleteBtn = (id)=>{
-    HandleDeleteOption(id)
+    deleteTask(id)
   }
 
-  // handle mark as complete
+  // handel mark as complete
   const handleMarkAsComplete = (id)=>{
     setTickMark(true);
-    MarkAsComplete(id);
+    console.log(id)
+    markAsComplete(id);
   }
 
   return (

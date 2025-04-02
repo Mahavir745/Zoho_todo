@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { BiSolidDownArrow } from "react-icons/bi";
 
-const Filter = ({ HandleFilter }) => {
+const Filter = ({setFoundTitle}) => {
 
   const [state, setState] = useState(false);
   const filterMenu = useRef();
-  const [changeLable,setChangeLabel] = useState("No Filter");
+  const [changeLable,setChangeLabel] = useState("Status");
 
   // handle drop down menu
   const HandleDropDown = () => {
@@ -14,8 +14,9 @@ const Filter = ({ HandleFilter }) => {
 
   const HandleOptionClick = (status) => {
     setState(false)
-    HandleFilter(status);
+    setFoundTitle(status);
     setChangeLabel(status);
+
   }
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const Filter = ({ HandleFilter }) => {
       <li className='relative h-[80px] flex justify-center' ref={filterMenu} >
         {state &&
           <ul className='shadow w-[20%] flex flex-col gap-3 items-center p-2 rounded-md absolute bg-gray-50 top-2 z-10' >
-            <li className='hover:bg-blue-400 w-[100%] text-center p-2 cursor-pointer rounded-md text-gray-500 font-bold hover:text-white ' onClick={() => HandleOptionClick("No Filter")}>No Filter</li>
+            <li className='hover:bg-blue-400 w-[100%] text-center p-2 cursor-pointer rounded-md text-gray-500 font-bold hover:text-white ' onClick={() => HandleOptionClick("Status")}>Status</li>
             <li className='hover:bg-blue-400 w-[100%] text-center p-2 cursor-pointer rounded-md text-gray-500 font-bold hover:text-white' onClick={() => HandleOptionClick("Pending")}>Pending</li>
             <li className='hover:bg-blue-400 w-[100%] text-center p-2 cursor-pointer rounded-md text-gray-500 font-bold hover:text-white ' onClick={() => HandleOptionClick("Completed")}>Completed</li>
           </ul>

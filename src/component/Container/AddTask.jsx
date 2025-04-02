@@ -1,7 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import { handleAppStore } from '../../Store/AppStore';
 
-const AddTask = ({HandleAddTask}) => {
+const AddTask = () => {
 
+  const {addTaskData} = useContext(handleAppStore)
   const task = useRef();
 
   // Task added:
@@ -17,7 +19,7 @@ const AddTask = ({HandleAddTask}) => {
       id,
       status:"Pending",
     }
-    HandleAddTask(task_obj);
+    addTaskData(task_obj);
     task.current.value = " ";
   }
 
